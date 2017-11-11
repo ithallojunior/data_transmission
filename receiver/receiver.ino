@@ -32,7 +32,7 @@ void loop(void){
       t2 = micros() - t1;
       //Serial.println(data[0]);
       
-      for (int i=1;i<(BYTES);i+=2){
+      for (int i=1;i<(BYTES-1);i+=2){
         
         value = (data[1]<<8) | (data[2]&255);
          Serial.print(" Value:");

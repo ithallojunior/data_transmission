@@ -1,9 +1,8 @@
 import serial
 import matplotlib.pyplot as plt
-
 import numpy as np
 import time
-pd = "/dev/tty.usbmodem5d11"
+pd = "/dev/tty.usbmodem3a21"
 
 
 p = serial.Serial(port=pd, baudrate=230400,
@@ -24,8 +23,7 @@ while(1):
         plt.xlim(0, samples)
         plt.ylim(-0.1, 1.3)
 
-        start = time.time()
-        i = 0
+        i = 0; t1 = time.time()
         while i < samples:
             value1 = p.read()
             value2 = p.read()
@@ -35,16 +33,14 @@ while(1):
                 y[i] = float(v)*(1.1/1023.0)
                 x[i] = i
                 i = i +1
-                print "Values: ", v, ord(value1), ord(value2)
+                #print "Values: ", v, ord(value1), ord(value2)
             except IndexError:
                 print "Error"
                 pass
-
-
+        print("Evlapsed time %f"%(time.time() -t1))
         plt.plot(x, y)
-        plt.pause(1.0/200.0)
-
-
+        plt.pause(1.0/60.0)
+        print("time %f"%(time.time() -t1))
     except KeyboardInterrupt:
         plt.close()
         break

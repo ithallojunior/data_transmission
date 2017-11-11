@@ -6,6 +6,7 @@
 #define CSN_PIN 8
 #define BYTES 20
 
+
 #include <SPI.h>
 #include "RF24.h"
 
@@ -32,7 +33,7 @@ void loop(void){
   radio.read( &data, (BYTES+1)*sizeof(byte) );
   
     if  (data[0]=='f') {   
-      for (int i=1;i<(BYTES);i+=2){
+      for (int i=1;i<(BYTES-1);i+=2){
          value = (data[1]<<8) | (data[2]&255);
          Serial.write(value/256);
          Serial.write(value%256);
