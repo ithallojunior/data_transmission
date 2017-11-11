@@ -22,16 +22,24 @@ void setup() {
   data[0] = 'f'; // the ack
 }
 
+unsigned long start;
+
 void loop(void){
 
-  for (int i=1; i<(BYTES); i+=2){
-  payload = analogRead(3);
-  
-  data[1] = (payload>>8);
-  data[2] = (payload&255);
-  delayMicroseconds(500); //delay for 2khz
- 
+  //for (int i=1; i<(BYTES-1); i+=2){
+  int i=1;
+  start = micros();
+  while(i<(BYTES-1)){
+    payload = analogRead(3);
+    if((micros() - start) >= 500){
+      data[i] = (payload>>8);
+      data[i+1] = (payload&255);
+      i += 2; 
+      start = micros();
+    }
+  //delayMicroseconds(500); //delay for 2khz
+  } // in case of error nothing is sent
   radio.write( &data, (BYTES+1)*sizeof(byte) ); //Send data to 'Receiver' ever second
- } // in case of error nothing is sent
+
 
 }
