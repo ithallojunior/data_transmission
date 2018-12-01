@@ -2,15 +2,15 @@ import serial
 import matplotlib.pyplot as plt
 import numpy as np
 import time
-pd = "/dev/tty.usbmodem3a21"
-
+pd = "/dev/tty.usbmodem1421"
+#pd = "/dev/tty.usbmodem1421"
 
 p = serial.Serial(port=pd, baudrate=230400,
                   bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE)
 #plt.axis([0, 10, 0, 1])
 plt.ion()
 
-samples = 500
+samples = 1000
 x = np.arange(samples)
 y = np.zeros(samples)
 
@@ -39,7 +39,7 @@ while(1):
                 pass
         print("Evlapsed time %f"%(time.time() -t1))
         plt.plot(x, y)
-        plt.pause(1.0/60.0)
+        plt.pause(1.0/100.0)
         print("time %f"%(time.time() -t1))
     except KeyboardInterrupt:
         plt.close()

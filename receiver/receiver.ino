@@ -13,6 +13,7 @@ byte data[BYTES+1];
 
 void setup() {
   Serial.begin(230400);
+  Serial.println("Begin");
   radio.begin(); // Start up the radio
   radio.setPayloadSize(BYTES+1);
   radio.setAutoAck(1); // Ensure autoACK is enabled
