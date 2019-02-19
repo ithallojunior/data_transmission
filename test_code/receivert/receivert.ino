@@ -4,6 +4,7 @@
 //RECEIVER
 
 //#define DEBUG //uncomment fo debugging
+//#define TWOBYTES // uncomment to use the two bytes through USB sending protocol
 
 #define CSN_PIN 7
 #define CE_PIN 8
@@ -56,7 +57,12 @@ void loop(void){
             Serial.print(t2);
             Serial.println("us");
           #else 
-              Serial.println((value/1023.)*1.1);
+              #ifdef TWOBYTES
+                Serial.write(value/256);
+                Serial.write(value%256);
+              #else
+                Serial.println((value/1023.)*1.1);
+              #endif
           #endif
         }  
 
