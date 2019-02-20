@@ -42,8 +42,8 @@ Enjoy it :)
  | ---------- | -------------: | :---------------: |
  | VCC        | 3V3            | VCC (3V3)         |
  | GND        | GND            | GND               |
- | CSN        | 7              | 1 (RESET, PB5)\*  |
- | CE         | 8              |  3 (PB4)          |
+ | CSN        | 7              | 3 (PB4)           |
+ | CE         | 8              | 1 (RESET, PB5)\*  |
  | MOSI       | D11 (MOSI)     | 6 (MIS0, PB1)\*\* |
  | SCK        | D13 (SCK)      | 7 (SCK, PB2)      |
  | IRQ        | NC             | NC                |
