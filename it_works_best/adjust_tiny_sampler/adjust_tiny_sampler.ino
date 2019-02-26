@@ -12,6 +12,7 @@
 #define ANALOG_PIN 3 //PB3, pin 2
 #define T_SAMPLING 500 //useconds, 2000Hz
 #define DELTA T_SAMPLING - 18//12 // measured previously for exactly 500Hz 
+// it oscillates between 1996.101 and 2000.000, but stays mostly in 2000.000
 
 
 const unsigned char pipe[9] = "NRF24l01p";
