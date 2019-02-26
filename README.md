@@ -57,3 +57,7 @@ Enjoy it :)
 ![Attiny85 Pinout.](attiny.png)
 
 ![NRF24L01](nrf24l01.png)
+
+### Library
+
+The library  that was used here (and its documentation) can be found at [http://tmrh20.github.io/RF24/](http://tmrh20.github.io/RF24/). 
