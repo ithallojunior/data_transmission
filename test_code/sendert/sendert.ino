@@ -15,18 +15,25 @@
   #define CSN_PIN 7
   #define CE_PIN 5
 #endif
-#define BUFFER_SIZE 20 //max 255
+#define BUFFER_SIZE 10 //max 255
 #define CHANNEL 0x4c
 #define MAX_DELAY  100 //useconds
 #define T_SAMPLING 500 //usenconds, 2kHz
 #define ANALOG_PIN 3
 
-byte data[BUFFER_SIZE];
+//byte data[BUFFER_SIZE];
 const byte pipe[9] = "NRF24l01p";
 int payload = 0;
 unsigned long start, delta;
 
 const unsigned long time_delta = T_SAMPLING - MAX_DELAY;
+
+struct dataBuffer{
+    unsigned char a[BUFFER_SIZE];
+    unsigned char b[BUFFER_SIZE];
+};
+
+struct dataBuffer data;
 
 int toggle = 1;
 int i = 0;
@@ -44,7 +51,7 @@ void setup() {
   radio.begin(); 
   radio.setChannel(CHANNEL);
   radio.enableAckPayload();
-  radio.setPayloadSize(BUFFER_SIZE); 
+  radio.setPayloadSize(sizeof(data)); 
   radio.setRetries(0,15);
 
   radio.stopListening();
@@ -65,9 +72,9 @@ void loop(void){
 
       delta = micros() - start;
       if(delta >= time_delta){
-        data[i] = (payload>>8);
-        data[i+1] = (payload&255);
-        i += 2; 
+        data.a[i] = (payload>>8);
+        data.b[i] = (payload&255);
+        i += 1; 
         #ifdef DEBUG
           Serial.print("Payload: ");
           Serial.print(payload);
@@ -77,7 +84,7 @@ void loop(void){
         start = micros();
         }
     } 
- sent = radio.write( &data, (BUFFER_SIZE)*sizeof(byte) );
+ sent = radio.write( &data, sizeof(data) );
  if (sent){
   #ifdef DEBUG
    Serial.println("Data sent");

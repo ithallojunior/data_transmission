@@ -6,12 +6,12 @@
  This code implements a self tunning data sampler
  */
 
-#define DEBUG //uncomment fo debugging
-//#define TWOBYTES // uncomment to use the two bytes through USB sending protocol
+//#define DEBUG //uncomment fo debugging
+#define TWOBYTES // uncomment to use the two bytes through USB sending protocol
 
 #define BUFFER_SIZE 20
-#define DELTA 488 //us, 2048Hz 
-#define ERROR_TIME 145 //us manually adjusted
+#define DELTA 500 //us, 2000Hz 
+#define ERROR_TIME 144 //us manually adjusted
 #define DELTA_TIME DELTA - ERROR_TIME // us
 
 byte data[BUFFER_SIZE];
