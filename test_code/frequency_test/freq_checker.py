@@ -4,7 +4,10 @@ import numpy as np
 import time
 #import pdb
 #pdb.set_trace
-pd = '/dev/cu.usbmodem1411'
+#pd = '/dev/cu.usbmodem1411'
+pd  = "/dev/cu.wchusbserial1410"
+#pd = "/dev/tty.usbmodem1421"
+
 def worker():
     p = serial.Serial(port= pd, baudrate=115200,
                       bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, timeout=None)
@@ -16,8 +19,8 @@ def worker():
     samples = 2048
     y = np.zeros(samples)
     i = 0
-    fs  = 2048.0 # sampling frequency
-    f_ext = 60.0#59.96 # frequency being measured
+    fs  = 2000.0 # sampling frequency
+    f_ext = 500.#59.96 # frequency being measured
     
     xtick= np.linspace(-fs/2., fs/2., 11)
     f = np.linspace(-fs/2., fs/2., samples)
@@ -27,7 +30,7 @@ def worker():
             plt.clf()
             plt.xlabel("Freq(Hz)")
             #plt.xticks(xtick)
-            plt.xlim(40, 256)
+            plt.xlim(0, 1024)
             #plt.ylim(-10, 100)
             i = 0
             while i < samples:
@@ -45,7 +48,7 @@ def worker():
             plt.title("Fd: %s | Meas. F: %.3f Hz | Actual F: %.3f \n Expec. Fs: %.3f | Actual Fs: %.3f Hz"%(fd, fs * fd/samples, f_ext, fs, f_ext * samples/fd ))
             plt.plot(f, Y)
             #print time.time() - st
-            plt.pause(1.0/15.)
+            plt.pause(1.0/100.)
         
 
         except KeyboardInterrupt:
