@@ -3,3 +3,5 @@
 *.pages
 #Windows
 Thumbs.db
+#vim
+*.swp
