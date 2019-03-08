@@ -25,18 +25,18 @@ The following table analyzes the signal frequency that was measured.
  | Unit               |  Value     |
  | ------------------ | :--------: |
  | Expected frequency | **500.000Hz** |
- | Mean frequency ± std\*    | **499.550±0.512Hz** |
- | Maximum measured frequency | **500.000Hz** |
- | Mininum measured frequency | **498.000Hz** |
+ | Mean frequency ± std\*    | **496.003±0.173Hz** |
+ | Maximum measured frequency | **497.000Hz** |
+ | Mininum measured frequency | **495.000Hz** |
 
 \* Unbiased standard deviation. Same as Matlab's one.
 
 It is important to notice that the maximum deviation from the 
-    expected valued of ***500.000Hz*** was **0.400%** for values below it,
-    **0.000%** for values above it, and **0.090%** for the mean. The following plot shows
+    expected valued of ***500.000Hz*** was **1.000%** for values below it,
+    **0.600%** for values above it, and **0.799%** for the mean. The following plot shows
     this variation
 
-.![Plot of the measured signal frequencies.](signal_data_2019-02-27_14-27-39.png)
+.![Plot of the measured signal frequencies.](signal_data_2019-03-08_19-48-08.png)
 
 ### Sampling frequency variation
 The following table analyzes the sampling frequency that was measured.
@@ -44,15 +44,15 @@ The following table analyzes the sampling frequency that was measured.
  | Unit               |  Value     |
  | ------------------ | :--------: |
  | Expected frequency | **2000.000Hz** |
- | Mean frequency ± std\*    | **2001.804±2.051Hz** |
- | Maximum measured frequency | **2008.032Hz** |
- | Minimim measured frequency | **2000.000Hz** |
+ | Mean frequency ± std\*    | **2016.116±0.705Hz** |
+ | Maximum measured frequency | **2020.202Hz** |
+ | Minimim measured frequency | **2012.072Hz** |
 
 \* Unbiased standard deviation. Same as Matlab's one.
 
 It is important to notice that the maximum deviation from the 
-    expected valued of ***500.000Hz*** was **0.000%** for values below it,
-    **0.402%** for values above it, and **0.090%** for the mean. The following plot shows
+    expected valued of ***500.000Hz*** was **0.604%** for values below it,
+    **1.010%** for values above it, and **0.806%** for the mean. The following plot shows
     this variation
 
-.![Plot of the measured sampling frequencies.](sampling_data_2019-02-27_14-27-39.png)
+.![Plot of the measured sampling frequencies.](sampling_data_2019-03-08_19-48-08.png)

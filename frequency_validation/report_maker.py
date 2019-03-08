@@ -8,7 +8,7 @@ Author: Ithallo Junior Alves Guimaraães
 Feb 2019
 """
 
-import settings
+import validation_settings as settings
 import numpy as np 
 import os
 import matplotlib.pyplot as plt
