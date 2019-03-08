@@ -5,9 +5,10 @@ import numpy as np
 import time
 #import pdb
 #pdb.set_trace
-pd = '/dev/cu.usbmodem1421'
+#pd = '/dev/cu.usbmodem1421'
+pd ='/dev/cu.wchusbserial1410'
 def worker():
-    p = serial.Serial(port= pd, baudrate=230400,
+    p = serial.Serial(port= pd, baudrate=115200,
                       bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, timeout=None)
     #plt.axis([0, 10, 0, 1])
     plt.ion()
@@ -24,8 +25,8 @@ def worker():
             plt.xlabel("Freq(Hz)")
             #plt.xlim(100, 200)
             #plt.xticks(xtick)
-            plt.xlim(0, 500)
-            plt.ylim(-10, 100)
+            plt.xlim(0, 1000)
+            #plt.ylim(-10, 100)
             i = 0
             while i < samples:
                 value1 = p.read()

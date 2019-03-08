@@ -18,8 +18,8 @@
 #define BUFFER_SIZE 4 //max 255, real buffer size
 #define ANALOG_PIN 3 //PB3, pin 2
 #define T_SAMPLING 500 //useconds, 2000Hz
-#define DELTA T_SAMPLING - 18//12 // measured previously for exactly 500Hz 
-// it oscillates between 1996.101 and 2000.000, but stays mostly in 2000.000
+#define DELTA T_SAMPLING - 18// error time
+
 
 // setting the name of the transmitter
 #ifdef DOT_1
@@ -32,7 +32,7 @@ uint16_t data[BUFFER_SIZE];
 unsigned long int start, delta, start_sending, delta_sending; 
 unsigned int i = 0;
 unsigned long int time_delta = DELTA;
-//bool just_sent = false;
+
 
 RF24 radio(CE_PIN, CSN_PIN);
 
@@ -41,7 +41,7 @@ void setup() {
   radio.begin(); 
   radio.setChannel(CHANNEL);
   radio.setAddressWidth(5);
-  //radio.enableAckPayload();
+
   radio.setAutoAck(false);
   radio.setPayloadSize(sizeof(data)); // 2 x buffer size
   radio.setRetries(0,0);
@@ -65,7 +65,6 @@ void loop(void){
     
     // fill the buffer
     for(i=0;i < BUFFER_SIZE;i++){
-      
       
       start = micros();
 

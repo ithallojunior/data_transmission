@@ -1,18 +1,19 @@
  /* Receiver
  * This code is for multiple channel trasmission and reception. In order for me
  * to differentiate the devices I marked them with white dots, so
- * they are called DOT_1, DOT_2, and so on. This is because of the 40 bit nature,
+ * they are called 1_DOT, 2_DOT, and so on. This is because of the 40 bit nature,
  * of the pipe name (5 Bytes). They  can just differ on the first byte.
  */
 #include <SPI.h>
 #include "nRF24L01.h"
 #include "RF24.h"
 
+//#define DEBUG //uncomment fo debugging
 
 // if both commented  or both not commented,  the multi device read is activated
 //#define DOT_1 // activates the first device
-//#define DOT_2 // activate the second device
-//#define DEBUG //uncomment fo debugging
+#define DOT_2 // activate the second device
+
 
 
 #ifdef DOT_1 && !(DOT_2)
