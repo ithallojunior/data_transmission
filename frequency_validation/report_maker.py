@@ -15,10 +15,9 @@ import matplotlib.pyplot as plt
 
 def run():
     os.system("clear")
-    print("Initiating.")
-    
+    print("Initiating.")    
     # loading the signal and calculating the fft
-    X = np.loadtxt(settings.data_to_validate)
+    X = np.loadtxt(settings.folder_to_save + settings.data_to_validate)
     X_fft = np.abs(np.fft.fft(X)) # it goes along the last axis
     
     #till the half of frequencies
@@ -50,8 +49,8 @@ def run():
     plt.xlabel("Time(s)")
     
     plt.grid()
-    plt.legend(loc="best")
-    plt.savefig("signal_"+settings.data_to_validate[:-4]+".png")
+    plt.legend(loc="upper right")
+    plt.savefig(settings.folder_to_save+"signal.png")
     plt.close()
     
     # plotting sampling frequency
@@ -68,14 +67,14 @@ def run():
     plt.xlabel("Time(s)")
     
     plt.grid()
-    plt.legend(loc="best")
-    plt.savefig("sampling_"+settings.data_to_validate[:-4]+".png")
+    plt.legend(loc="upper right")
+    plt.savefig(settings.folder_to_save+"sampling.png")
     plt.close()
     #report
     print("Writing report.")
     
-    mf = open("README.md", "w")
-    mf.write("# Frequency Validation\n")
+    mf = open(settings.folder_to_save+"README.md", "w")
+    mf.write("# Frequency Validation for %s\n"%(settings.folder_to_save[2:-1]))
     mf.write("This is the validation  for the sampling frequency. This report was generated automatically.\n\n")
     mf.write("## Methods\n")
     mf.write("""A senoidal signal with a **%.3f Hz** frequency, amplitude of **%.2f V**, 
@@ -112,7 +111,7 @@ def run():
     100. * (abs(f.min() - settings.expected_frequency)/settings.expected_frequency),
     100. * (abs(f.max() - settings.expected_frequency)/settings.expected_frequency),
     100. * (abs(f.mean() - settings.expected_frequency)/settings.expected_frequency) ))
-    mf.write("![Plot of the measured signal frequencies.](signal_%s.png)\n\n"%settings.data_to_validate[:-4])
+    mf.write("![Plot of the measured signal frequencies.](signal.png)\n\n")
 
 
     mf.write("### Sampling frequency variation\n")
@@ -132,15 +131,15 @@ def run():
     100. * (abs(S.min() - settings.sampling_frequency)/settings.sampling_frequency),
     100. * (abs(S.max() - settings.sampling_frequency)/settings.sampling_frequency),
     100. * (abs(S.mean() - settings.sampling_frequency)/settings.sampling_frequency) ))
-    mf.write("![Plot of the measured sampling frequencies.](sampling_%s.png)\n"%settings.data_to_validate[:-4])
+    mf.write("![Plot of the measured sampling frequencies.](sampling.png)\n")
 
     mf.close()
     
     if(settings.pandoc_update):
         print("Updating pandoc generated PDF report.")
-        os.system("pandoc README.md -o report.pdf")
+        os.system("cd %s; pandoc README.md -o report.pdf"%(settings.folder_to_save))
 
-    print("The report is finished")
+    print("The report is finished for %s"%(settings.folder_to_save[2:-1]))
 
 if (__name__ == "__main__"):
     run()

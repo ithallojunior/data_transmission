@@ -5,7 +5,7 @@ It must be configured via the settings.py file. Here, its
 purpose is to get the data to validate the sampling frequency.
 
 Author: Ithallo Junior Alves Guimarães
-Feb 2019
+March 2019
 """
 import validation_settings as settings
 import numpy as np
@@ -83,9 +83,9 @@ def run():
 
     if (not break_out):
         #saving to file
-        text = "data_%s.txt"%(str(datetime.datetime.now())[:-7]).replace(" ", "_").replace(":", "-")
+        text = settings.folder_to_save+"data_%s.txt"%(str(datetime.datetime.now())[:-7]).replace(" ", "_").replace(":", "-")
         np.savetxt(text, X, fmt=settings.format)
-        print ("file saved as %s "%text)
+        print ("file saved to %s "%text)
 
     #closing port
     p.flush()
