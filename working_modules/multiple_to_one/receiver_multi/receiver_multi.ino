@@ -118,8 +118,6 @@ int t1, t2;
                 // DOT 2
                 Serial.write(data_dot_2[i]/256);
                 Serial.write(data_dot_2[i]%256);
-              //#else
-                //Serial.println((value/1023.)*1.1);
               #endif
           #endif
      }

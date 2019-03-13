@@ -12,12 +12,12 @@ time.sleep(0.5)
 #plt.axis([0, 10, 0, 1])
 plt.ion()
 
-samples = 1024#samples
-fs = 2000. # samples/sec
+samples = 4096#samples
+fs = 2040. # samples/sec
 freq = 0. # to start with
 t_freq_checker = 2. # checks frequency every N seconds
 time_window = samples/fs # seconds
-to_show = 1000
+to_show = 100
 t = np.arange(0., time_window, 1./fs)
 y = np.zeros(samples)
 
@@ -45,7 +45,7 @@ while(1):
                 pass
         #print("Evlapsed time %f"%(time.time() -t1))
         plt.plot(t, y)
-        plt.title("Fs: %.3f | Rounded Freq.: %.3f "%(fs, freq))
+        plt.title("Fs: %.3f |  Freq.: %.3f "%(fs, freq))
         plt.grid()
         plt.pause(1.0/30.0)
         #print("time %f"%(time.time() -t1))
@@ -53,7 +53,7 @@ while(1):
         if ((time.time() - t1) >= t_freq_checker):
             ymean = y - y.mean() #removes DC
             fd = ( np.abs( np.fft.fft(ymean) ) )[:samples/2].argmax()
-            freq = round(fs * fd/samples)
+            freq = fs * fd/samples
             t1 = time.time()
     except KeyboardInterrupt:
         plt.close()
