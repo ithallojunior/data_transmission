@@ -24,6 +24,7 @@ def run_plotter():
     plt.ion()
     plt.figure(figsize = (14,8))
     
+    grid_spacing = np.arange(0, settings.time_window_to_show, settings.time_window_to_show/settings.xticks)
     samples = int(settings.sampling_frequency * settings.time_window) #samples
     t = np.arange(0., settings.time_window, 1./settings.sampling_frequency)
     y = np.zeros((samples, settings.number_of_channels))
@@ -66,7 +67,8 @@ def run_plotter():
                         yn = y[:, j]
 
                     plt.plot(t, yn, c=settings.colors[j], label="Channel %s"%(j+1))
-                plt.grid()
+                plt.xticks(grid_spacing)
+                plt.grid(color='k', linestyle='-', linewidth=.1)
                 plt.legend(loc="upper right")
                 plt.title("Signal(s) || Fs: %.3f"%settings.sampling_frequency)
                 plt.pause(1.0/30.0)

@@ -24,6 +24,7 @@ def run_plotter():
     plt.ion()
     plt.figure(figsize = (14,8))
     
+    grid_spacing = np.arange(0, settings.max_expected_frequency_to_show, settings.max_expected_frequency_to_show/settings.xticks)
     samples = settings.frequency_window 
     f = np.arange(0., settings.sampling_frequency, settings.sampling_frequency/samples)
     y = np.zeros((samples, settings.number_of_channels))
@@ -33,7 +34,7 @@ def run_plotter():
         try:
             plt.clf()
             plt.xlabel("Frequency(Hz)")
-            plt.xlim(0, 1.5*settings.max_expected_frequency)
+            plt.xlim(0, settings.max_expected_frequency_to_show)
            # plt.ylim(-1.05 * settings.offset , 1.05 * (settings.voltage_range - settings.offset))
 
             i = 0; 
@@ -68,7 +69,8 @@ def run_plotter():
                     
                     Y = np.abs(np.fft.fft(ny))
                     plt.plot(f, Y, c=settings.colors[j], label="Channel %s"%(j+1))
-                plt.grid()
+                plt.xticks(grid_spacing)
+                plt.grid(color='k', linestyle='-', linewidth=0.1)
                 plt.legend(loc="upper right")
                 plt.title("Frequency domain || Fs: %.3f"%settings.sampling_frequency)
                 plt.pause(1.0/30.0)
