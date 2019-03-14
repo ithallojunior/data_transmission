@@ -18,7 +18,6 @@ total_time = 1.*60. # seconds, to be used to get the total number of samples
 max_expected_frequency = 500.# Hz
 max_expected_frequency_to_show = 2. * max_expected_frequency # Hz
 
-time_to_update_frequency = 2. # every N seconds
 
 # signal settings
 voltage_range = 1.1 # max selected in the attiny85 sampler
@@ -30,7 +29,7 @@ amplitude = 1. # volt(s), set in the signal generator
 format = "%.4f" # I think 4 values after the point is enough
 
 # transmitter settings
-number_of_channels = 1  # number of channels to be displayed/sampled  
+number_of_channels = 1# number of channels to be displayed/sampled
 
 #plotting settings
 colors = ["b", "r", "g", "y"]
