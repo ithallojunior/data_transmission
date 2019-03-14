@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 def run():
     os.system("clear")
-    print("Initiating.")    
+    print("Initiating...")    
     # loading the signal and calculating the fft
     X = np.loadtxt(settings.folder_to_save + settings.data_to_validate)
     X_fft = np.abs(np.fft.fft(X)) # it goes along the last axis
@@ -26,6 +26,9 @@ def run():
     # getting the digital frequency  (position)
     fd = X_fft2.argmax(axis=1)
     
+    # time vector
+    t = np.arange(settings.time_window, settings.total_time+settings.time_window, settings.time_window)
+
     # calculating the actual frequencies
     f = settings.sampling_frequency * fd/(settings.sampling_frequency * settings.time_window)
     # calculating the sampling frequencies
@@ -38,11 +41,11 @@ def run():
     # plotting signal frequency
     plt.figure(figsize = (14,8))
 
-    plt.plot(f, c="b", label="Signal frequency")
-    plt.plot(f_expected, c="r", label="Expected frequency")
+    plt.plot(t, f, c="b", label="Signal frequency")
+    plt.plot(t, f_expected, c="r", label="Expected frequency")
     
     plt.ylim(0.98 * settings.expected_frequency , 1.02 * settings.expected_frequency)  
-    plt.xlim(0, f.shape[0])
+    plt.xlim(t[0], t[-1])
 
     plt.title("Signal frequency variation over time")
     plt.ylabel("Frequency(Hz)")
@@ -56,11 +59,11 @@ def run():
     # plotting sampling frequency
     plt.figure(figsize = (14,8))
 
-    plt.plot(S, c="b", label="Sampling frequency")
-    plt.plot(S_expected, c="r", label="Expected frequency")
+    plt.plot(t, S, c="b", label="Sampling frequency")
+    plt.plot(t, S_expected, c="r", label="Expected frequency")
     
     plt.ylim(0.98 * settings.sampling_frequency , 1.02 * settings.sampling_frequency)  
-    plt.xlim(0, S.shape[0])
+    plt.xlim(t[0], t[-1])
 
     plt.title("Sampling frequency variation over time")
     plt.ylabel("Frequency(Hz)")
