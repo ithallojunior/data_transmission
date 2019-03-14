@@ -189,11 +189,13 @@ void setup() {
   radio.setChannel(CHANNEL);
   radio.setAddressWidth(5);
   //radio.enableAckPayload();
+  
   radio.setAutoAck(false);
+  radio.setRetries(0,0); 
   //radio.setCRCLength(RF24_CRC_16);
   radio.setDataRate(RF24_2MBPS); //more than enough
   radio.setPayloadSize(BUFFER_SIZE * sizeof(uint16_t)); // 2 x buffer size
-  //radio.setRetries(0,15); 
+  
 
 
 

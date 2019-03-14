@@ -9,7 +9,7 @@
 #include "nRF24L01.h"
 #include "RF24.h"
 
-//#define DOT_1 // if commented it activates the second device
+#define DOT_1 // if commented it activates the second device
 
 #define CSN_PIN 4//7//4
 #define CE_PIN 5//8//5 //reset pin

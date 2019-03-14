@@ -29,7 +29,7 @@
   #define DELTA REFERENCE_TIME + 15 // the 500 us results in 2060 on this attiny, so the correction
   const unsigned char pipe[5] = "1_DOT";
 #else
-  #define DELTA REFERENCE_TIME + 10 // the 500 us results in 2040 on this attiny
+  #define DELTA REFERENCE_TIME + 11 
   const unsigned char pipe[5] = "2_DOT";
 #endif
   
@@ -43,9 +43,11 @@ void setup(){
   radio.begin(); 
   radio.setChannel(CHANNEL);
   radio.setAddressWidth(5);
+  
   radio.setAutoAck(false);
-  radio.setPayloadSize(sizeof(data)); // 2 x buffer size
   radio.setRetries(0,0);
+  
+  radio.setPayloadSize(sizeof(data)); // 2 x buffer size
   radio.setDataRate(RF24_2MBPS); //more than enough
   
   radio.stopListening();
@@ -69,6 +71,6 @@ void loop(){
   
 //send data 
 //just_sent = radio.write(&data, sizeof(data) );
-radio.writeFast(&data, sizeof(data) );
+  radio.writeFast(&data, sizeof(data) );
   
 }
