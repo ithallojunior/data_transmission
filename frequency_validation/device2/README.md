@@ -7,7 +7,7 @@ A senoidal signal with a **500.000 Hz** frequency, amplitude of **1.00 V**,
     was measured at the receiver.
 
  The supposed sampling frequency was **2040.000 Hz**, the
-    signal was sampled for **600.000 seconds**, and the FFT (to calculate the 
+    signal was sampled for **300.000 seconds**, and the FFT (to calculate the 
     frequency) was calculated every **2.000 seconds**.
 
  In order 

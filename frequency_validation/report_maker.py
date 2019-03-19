@@ -91,8 +91,7 @@ def run():
     by a SIGLENT SDG 830 function generator.\n\n"""%(
             settings.expected_frequency, settings.amplitude, 
             settings.offset, settings.sampling_frequency, 
-            settings.total_time * settings.time_window,
-            settings.time_window)  )
+            settings.total_time, settings.time_window)  )
     
     
     mf.write("## Results and discussion\n")
