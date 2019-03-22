@@ -34,3 +34,9 @@ number_of_channels = 1# number of channels to be displayed/sampled
 #plotting settings
 colors = ["b", "r", "g", "y"]
 xticks = 10
+
+# Filter settings, here a Butterworth will be used.
+use_filter = True # whether to use or not
+type = "bandpass" # lowpass, highpass or bandpass
+fc = [100, 200] #cutoff frequencies, change depending on the type
+order = 5#order of the filter

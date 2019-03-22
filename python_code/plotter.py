@@ -7,6 +7,7 @@ March 2019
 import serial
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy import signal
 import time
 import os
 import settings
@@ -28,6 +29,13 @@ def run_plotter():
     samples = int(settings.sampling_frequency * settings.time_window) #samples
     t = np.arange(0., settings.time_window, 1./settings.sampling_frequency)
     y = np.zeros((samples, settings.number_of_channels))
+    
+    
+    # filter, getting the coefficients one time for all, as it is kinda slow
+    if(settings.use_filter):
+        b, a = signal.butter(settings.order, settings.fc, fs=settings.sampling_frequency, btype=settings.type, analog=False)
+
+    
     break_out = False # if any error, breaks the loop
     while(1):
         try:
@@ -41,9 +49,9 @@ def run_plotter():
             while i < samples:
                 for j in range(settings.number_of_channels):
                     
-                    a = p.read()
-                    b = p.read()
-                    value  = modules.convert_input(a, b)
+                    v1 = p.read()
+                    v2 = p.read()
+                    value  = modules.convert_input(v1, v2)
                     
                     if (value is None):# case data is being hung
                         break_out = True
@@ -61,12 +69,19 @@ def run_plotter():
                 break
             else:
                 for j in range(settings.number_of_channels):
-                    if (settings.remove_mean):# removing DC
+                    
+                    # removing DC
+                    if (settings.remove_mean):
                         yn = y[:, j] - y[:, j].mean()
                     else:
                         yn = y[:, j]
+                        
+                   # filtering signal
+                    if (settings.use_filter):
+                        yn = signal.lfilter(b, a, yn)
 
                     plt.plot(t, yn, c=settings.colors[j], label="Channel %s"%(j+1))
+                
                 plt.xticks(grid_spacing)
                 plt.grid(color='k', linestyle='-', linewidth=.1)
                 plt.legend(loc="upper right")
