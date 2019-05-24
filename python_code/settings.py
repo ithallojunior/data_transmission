@@ -21,8 +21,8 @@ max_expected_frequency_to_show = 2. * max_expected_frequency # Hz
 
 # signal settings
 voltage_range = 1.1 # max selected in the attiny85 sampler
-offset = 0.5 # volt(s), set in the signal generator
-remove_mean = True # case the 60Hz starts messing with the signal, removes the DC by the mean. If true it neglects the offset value
+offset = 0.63 # volt(s), set in the signal generator
+remove_mean = False # case the 60Hz starts messing with the signal, removes the DC by the mean. If true it neglects the offset value
 amplitude = 1. # volt(s), set in the signal generator
 
 # data saving settings 
@@ -36,7 +36,7 @@ colors = ["b", "r", "g", "y"]
 xticks = 10
 
 # Filter settings, here a Butterworth will be used.
-use_filter = True # whether to use or not
+use_filter = False # whether to use or not
 type = "bandpass" # lowpass, highpass or bandpass
-fc = [100, 200] #cutoff frequencies, change depending on the type
-order = 5#order of the filter
+fc = [100, 300] #cutoff frequencies, change depending on the type
+order = 6 #order of the filter
