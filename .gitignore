@@ -7,3 +7,7 @@ Thumbs.db
 *.swp
 #python
 *.pyc
+#vscode
+.vscode/
+#pyenv
+.python-version
