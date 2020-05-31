@@ -88,8 +88,19 @@ def run_plotter():
                         yn = signal.lfilter(b, a, yn)
 
                     Y = np.abs(np.fft.fft(yn))
+
+                    freq_hz = round(
+                        abs(
+                            frequencies[Y.argmax()]
+                            * settings.sampling_frequency
+                        ),
+                        2
+                    )
+
                     plt.plot(
-                        f, Y, c=settings.colors[j], label="Channel %s" % (j+1))
+                        f, Y, c=settings.colors[j],
+                        label="Channel %s, Fp: %s Hz" % (j+1, freq_hz)
+                    )
 
                 plt.xticks(grid_spacing)
                 plt.grid(color='k', linestyle='-', linewidth=0.1)
