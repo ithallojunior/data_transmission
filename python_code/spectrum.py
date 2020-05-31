@@ -33,8 +33,8 @@ def run_plotter():
         settings.max_expected_frequency_to_show/settings.xticks
     )
     samples = settings.frequency_window
-    f = np.arange(0., settings.sampling_frequency,
-                  settings.sampling_frequency/samples)
+    frequencies = np.fft.fftfreq(samples)
+    f = abs(frequencies * settings.sampling_frequency)
     y = np.zeros((samples, settings.number_of_channels))
 
     # filter, getting the coefficients one time for all, as it is kinda slow
