@@ -3,7 +3,11 @@ A serial to the attiny85
 that will be used to calibrate its internal oscillator.
 It writes the callibration factor to the eeprom starting
 at 0.
- */
+Remember that to keep the EEPROM data after reprogramming fuses must 
+be set.
+The fuses are: 
+-U lfuse:w:0xe2:m -U hfuse:w:0xf7:m -U efuse:w:0xff:m
+*/
 #include <EEPROM.h>
 #include<SoftwareSerial.h>
 
@@ -15,7 +19,7 @@ const byte TX=3;
 unsigned long int t=0;
 bool initial_state=0;
 char response='g';
-char value='0';
+unsigned char value='0';
 
 SoftwareSerial mySerial(RX, TX);
 
@@ -60,13 +64,13 @@ void loop(void){
       mySerial.print("OSCCAL before: ");
       mySerial.println(OSCCAL);
       
-      OSCCAL +=1;
+      OSCCAL += 1;
       response = 'b';
     }
 
     else if(response=='d'){
       
-      OSCCAL -=1;     
+      OSCCAL -= 1;     
       response = 'b';
     }
     
@@ -75,14 +79,14 @@ void loop(void){
       EEPROM.get(0, value);
       
       mySerial.print("read from EEPROM: ");
-      mySerial.println( (int)value );
+      mySerial.println( (int) value );
 
       response = 'b';
     }
 
     else if (response=='W'){
       
-      EEPROM.update(0, (byte) OSCCAL);
+      EEPROM.update(0, (unsigned char) OSCCAL);
 
       mySerial.println("written to EEPROM");
       response = 'b';
