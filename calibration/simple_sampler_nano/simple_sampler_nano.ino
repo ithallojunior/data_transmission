@@ -5,7 +5,7 @@ a buffer to make it easier.
 
 #define BUFFER_SIZE 4
 #define ANALOG_PIN 3 
-#define DELTA 500//useconds, 2000Hz
+#define DELTA 250//useconds, 4000Hz
 
 
 uint16_t buffer[BUFFER_SIZE];
