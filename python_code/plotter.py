@@ -55,7 +55,6 @@ def plotter():
     if(settings.use_filter):
         b, a = modules.get_filter_constants()
 
-    break_out = False  # if any error, breaks the loop
     while(1):
         try:
             plt.clf()
