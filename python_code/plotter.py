@@ -16,6 +16,8 @@ import modules
 
 
 def plotter():
+    """Plots the acquired signal along the time axis."""
+
     os.system("clear")
     print("Starting plotter...")
     p = serial.Serial(

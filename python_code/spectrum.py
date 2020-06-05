@@ -16,6 +16,8 @@ import modules
 
 
 def spectrum_plotter():
+    """Plots the signal's frequency spectrum."""
+
     os.system("clear")
     print("Starting spectrum plotter...")
     p = serial.Serial(port=settings.device, baudrate=settings.baud_rate,
