@@ -5,6 +5,9 @@ Author: Ithallo Junior Alves Guimarães
 March 2019
 """
 
+import serial
+from sys import exit
+
 import settings
 
 
@@ -20,3 +23,19 @@ def convert_input(a, b, raw=False):
         return value
 
     return (settings.voltage_range * (value/1023.)) - settings.offset
+
+
+def serial_port():
+    """Encapsulates the opening of the serial port."""
+
+    try:
+        p = serial.Serial(
+            port=settings.device, baudrate=settings.baud_rate,
+            bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
+            timeout=settings.timeout
+        )
+    except serial.SerialException:
+        print("Device <%s> not found. Check your circuits." % settings.device)
+        exit()
+
+    return p
