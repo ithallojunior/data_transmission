@@ -58,56 +58,41 @@ def spectrum_plotter():
 
                     v1 = p.read()
                     v2 = p.read()
-                    value = modules.convert_input(v1, v2)
-
-                    if (value is None):  # case data is being hung
-                        break_out = True
-                        print ("\nNo data, check your circuits.\n")
-                        break
-                    else:
-                        y[i, j] = value
-
-                if (break_out):
-                    break
-                else:
+                    y[i, j] = modules.convert_input(v1, v2)
                     i = i + 1
 
-            if (break_out):
-                break
-            else:
-                for j in range(settings.number_of_channels):
+            for i in range(settings.number_of_channels):
 
-                    # removing DC
-                    if (settings.remove_mean):
-                        yn = y[:, j] - y[:, j].mean()
-                    else:
-                        yn = y[:, j]
+                # removing DC
+                if (settings.remove_mean):
+                    yn = y[:, i] - y[:, i].mean()
+                else:
+                    yn = y[:, i]
 
-                   # filtering signal
-                    if (settings.use_filter):
-                        yn = signal.lfilter(b, a, yn)
+                # filtering signal
+                if (settings.use_filter):
+                    yn = signal.lfilter(b, a, yn)
 
-                    Y = np.abs(np.fft.fft(yn))
+                Y = np.abs(np.fft.fft(yn))
 
-                    freq_hz = round(
-                        abs(
-                            frequencies[Y.argmax()]
-                            * settings.sampling_frequency
-                        ),
-                        2
-                    )
+                freq_hz = round(
+                    abs(frequencies[Y.argmax()] * settings.sampling_frequency),
+                    2
+                )
 
-                    plt.plot(
-                        f, Y, c=settings.colors[j],
-                        label="Channel %s, Fp: %s Hz" % (j+1, freq_hz)
-                    )
+                plt.plot(
+                    f, Y, c=settings.colors[i],
+                    label="Channel %s, Fp: %s Hz" % (j+1, freq_hz)
+                )
 
-                plt.xticks(grid_spacing)
-                plt.grid(color='k', linestyle='-', linewidth=0.1)
-                plt.legend(loc="upper right")
-                plt.title("Frequency domain || Fs: %.3f" %
-                          settings.sampling_frequency)
-                plt.pause(1.0/60.0)
+            plt.xticks(grid_spacing)
+            plt.grid(color='k', linestyle='-', linewidth=0.1)
+            plt.legend(loc="upper right")
+            plt.title("Frequency domain || Fs: %.3f  || Filter %s" % (
+                      settings.sampling_frequency,
+                      'ON' if settings.use_filter else 'OFF')
+                      )
+            plt.pause(1.0/60.0)
         except KeyboardInterrupt:
             plt.close()
             break
