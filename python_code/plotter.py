@@ -20,7 +20,7 @@ def plotter():
     p = serial.Serial(
         port=settings.device, baudrate=settings.baud_rate,
         bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
-        timeout=settings.timeout
+        timeout=0.
     )
     p.flush()
 
@@ -71,55 +71,49 @@ def plotter():
                          1.05 * settings.voltage_range/2.)
             i = 0
             while i < samples:
-                for j in range(settings.number_of_channels):
 
+                for j in range(settings.number_of_channels):
                     v1 = p.read()
                     v2 = p.read()
-                    value = modules.convert_input(v1, v2)
-
-                    if (value is None):  # case data is being hung
-                        break_out = True
-                        print ("\nNo data, check your circuits.\n")
-                        break
-                    else:
-                        y[i, j] = value
-
-                if (break_out):
-                    break
-                else:
+                    y[i, j] = modules.convert_input(v1, v2)
                     i += 1
 
-            if (break_out):
-                break
-            else:
+            # circular buffer, simple now
+            plot_buffer = plot_buffer[samples:, :]
+            plot_buffer = np.vstack((plot_buffer, y[:buffer_length, :]))
 
-                # circular buffer, simple now
-                plot_buffer = plot_buffer[samples:, :]
-                plot_buffer = np.vstack((plot_buffer, y[:buffer_length, :]))
+            for i in range(settings.number_of_channels):
 
-                for j in range(settings.number_of_channels):
-                    # removing DC
-                    if (settings.remove_mean):
-                        yn = plot_buffer[:, j] - plot_buffer[:, j].mean()
-                    else:
-                        yn = plot_buffer[:, j]
+                # removing DC
+                if (settings.remove_mean):
+                    yn = plot_buffer[:, i] - plot_buffer[:, i].mean()
+                else:
+                    yn = plot_buffer[:, i]
 
-                   # filtering signal
-                    if (settings.use_filter):
-                        yn = signal.lfilter(b, a, yn)
+                # checking if there is signal
+                signal_flag = ''
+                if not np.any(yn):
+                    signal_flag = '- no signal'
 
-                    plt.plot(
-                        t, yn,
-                        c=settings.colors[j],
-                        label="Channel %s" % (j+1)
-                    )
+                # filtering signal
+                if (settings.use_filter):
+                    yn = signal.lfilter(b, a, yn)
+
+                plt.plot(
+                    t, yn, c=settings.colors[i],
+                    label="Channel %s %s" % (i+1, signal_flag)
+                )
 
                 plt.xticks(grid_spacing)
                 plt.grid(color='k', linestyle='-', linewidth=.1)
                 plt.legend(loc="upper right")
-                plt.title("Signal(s) || Fs: %.3f" %
-                          settings.sampling_frequency)
+                plt.title("Signal(s) || Fs: %.3f || Filter %s" % (
+                          settings.sampling_frequency,
+                          'ON' if settings.use_filter else 'OFF')
+                          )
+
                 plt.pause(1.0/60.0)
+
         except KeyboardInterrupt:
             plt.close()
             break
