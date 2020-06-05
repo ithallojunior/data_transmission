@@ -39,6 +39,6 @@ xticks = 10
 
 # Filter settings, here a Butterworth will be used.
 use_filter = False  # whether to use or not
-type = "bandpass"  # lowpass, highpass or bandpass
+filter_type = "bandpass"  # lowpass, highpass or bandpass
 fc = [2., 500.]  # cutoff frequencies, change depending on the type
 order = 4  # order of the filter
