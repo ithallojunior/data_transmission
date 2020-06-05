@@ -63,12 +63,7 @@ def plotter():
             plt.clf()
             plt.xlabel("Time(s)")
             plt.xlim(0, settings.time_window_to_show)
-            if (not settings.remove_mean):
-                plt.ylim(-1.05 * settings.offset, 1.05 *
-                         (settings.voltage_range - settings.offset))
-            else:
-                plt.ylim(-1.05 * settings.voltage_range/2.,
-                         1.05 * settings.voltage_range/2.)
+
             i = 0
             while i < samples:
 
