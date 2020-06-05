@@ -4,7 +4,7 @@ Spectrum plotter, it must be set with the settings.py file
 Author: Ithallo Junior Alves Guimarães
 March 2019
 """
-import serial
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import signal
@@ -19,11 +19,8 @@ def spectrum_plotter():
     """Plots the signal's frequency spectrum."""
 
     os.system("clear")
+    p = modules.serial_port()
     print("Starting spectrum plotter...")
-    p = serial.Serial(port=settings.device, baudrate=settings.baud_rate,
-                      bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
-                      timeout=settings.timeout
-                      )
     p.flush()
 
     time.sleep(0.5)

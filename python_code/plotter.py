@@ -4,7 +4,7 @@ Plotter, it must be set with the settings.py file
 Author: Ithallo Junior Alves Guimarães
 March 2019
 """
-import serial
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy import signal
@@ -19,12 +19,11 @@ def plotter():
     """Plots the acquired signal along the time axis."""
 
     os.system("clear")
+
+    p = modules.serial_port()
+
     print("Starting plotter...")
-    p = serial.Serial(
-        port=settings.device, baudrate=settings.baud_rate,
-        bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
-        timeout=0.
-    )
+
     p.flush()
 
     time.sleep(0.5)
