@@ -43,7 +43,7 @@ def spectrum_plotter():
             settings.order, settings.fc,
             fs=settings.sampling_frequency, btype=settings.type, analog=False
         )
-    break_out = False  # if any error, breaks the loop
+
     while(1):
         try:
             plt.clf()
