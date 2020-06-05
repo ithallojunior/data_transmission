@@ -7,7 +7,7 @@ March 2019
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import signal
+from scipy.signal import lfilter
 import time
 import os
 
@@ -53,11 +53,7 @@ def plotter():
 
     # filter, getting the coefficients one time for all, as it is kinda slow
     if(settings.use_filter):
-        b, a = signal.butter(
-            settings.order, settings.fc,
-            fs=settings.sampling_frequency,
-            btype=settings.type, analog=False
-        )
+        b, a = modules.get_filter_constants()
 
     break_out = False  # if any error, breaks the loop
     while(1):
@@ -94,7 +90,7 @@ def plotter():
 
                 # filtering signal
                 if (settings.use_filter):
-                    yn = signal.lfilter(b, a, yn)
+                    yn = lfilter(b, a, yn)
 
                 plt.plot(
                     t, yn, c=settings.colors[i],
