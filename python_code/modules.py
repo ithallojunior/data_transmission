@@ -8,19 +8,15 @@ March 2019
 import settings
 
 
-def convert_input(a, b):
+def convert_input(a, b, raw=False):
     """Converts the two bytes into a single number."""
 
-    if (a == "" or b == ""):
-        return None  # because it is non-blocking if it hangs
+    if (a == '') or (b == ''):
+        return 0.  # if it was hanging defaults to 0
 
     value = ord(a[0]) * 256 + ord(b[0])
 
-    if (settings.remove_mean):
-        return settings.voltage_range * (value/1023.)
+    if raw:
+        return value
 
-    else:
-        if (settings.voltage_range is not None):
-            return (settings.voltage_range * (value/1023.)) - settings.offset
-        else:
-            return value
+    return (settings.voltage_range * (value/1023.)) - settings.offset
