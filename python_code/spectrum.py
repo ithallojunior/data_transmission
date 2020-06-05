@@ -14,7 +14,7 @@ import settings
 import modules
 
 
-def run_plotter():
+def spectrum_plotter():
     os.system("clear")
     print("Starting spectrum plotter...")
     p = serial.Serial(port=settings.device, baudrate=settings.baud_rate,
@@ -116,4 +116,4 @@ def run_plotter():
 
 
 if (__name__ == "__main__"):
-    run_plotter()
+    spectrum_plotter()

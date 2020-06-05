@@ -14,7 +14,7 @@ import settings
 import modules
 
 
-def run_plotter():
+def plotter():
     os.system("clear")
     print("Starting plotter...")
     p = serial.Serial(
@@ -128,4 +128,4 @@ def run_plotter():
 
 
 if (__name__ == "__main__"):
-    run_plotter()
+    plotter()
