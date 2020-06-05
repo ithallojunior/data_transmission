@@ -7,6 +7,7 @@ March 2019
 
 import serial
 from sys import exit
+from scipy.signal import butter
 
 import settings
 
@@ -39,3 +40,15 @@ def serial_port():
         exit()
 
     return p
+
+
+def get_filter_constants(analog=False):
+    """Encapsulates the calculation of the filter constants."""
+
+    b, a = butter(
+        settings.order, settings.fc,
+        fs=settings.sampling_frequency,
+        btype=settings.filter_type, analog=analog
+    )
+
+    return b, a
