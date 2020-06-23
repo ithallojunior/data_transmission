@@ -58,6 +58,7 @@ def plotter():
     while(1):
         try:
             plt.clf()
+            plt.ylabel("Volts(v)")
             plt.xlabel("Time(s)")
             plt.xlim(0, settings.time_window_to_show)
 
