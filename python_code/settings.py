@@ -22,7 +22,7 @@ max_expected_frequency_to_show = 2. * max_expected_frequency  # Hz
 # signal settings
 voltage_range = 1.1  # max selected in the attiny85 sampler
 offset = 0.  # voltage offset to correct signal
-remove_mean = True  # removes mean for the window
+remove_mean = False  # removes mean for the window
 
 # case using a known signal
 amplitude = 1.  # volt(s), set in the signal generator
