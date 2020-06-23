@@ -61,7 +61,8 @@ def spectrum_plotter():
             for i in range(settings.number_of_channels):
 
                 # removing DC
-                if (settings.remove_mean):
+                if (settings.remove_mean
+                        or settings.always_use_remove_mean_for_spectrum):
                     yn = y[:, i] - y[:, i].mean()
                 else:
                     yn = y[:, i]
