@@ -47,22 +47,20 @@ def sampler():
     for i in xrange(total_samples):
         try:
             # reading  value
-            a = p.read()
-            b = p.read()
+            v1 = p.read()
+            v2 = p.read()
 
             # converting to
-            value = modules.convert_input(a, b)
-            if (value is None):
+            if (v1 == '') or (v2 == ''):
                 print("\nNo data, check your circuits and run again.\n")
                 broke_out = True
                 break
             else:
                 X[i, 0] = i * delta_time
-                X[i, 1] = value
+                X[i, 1] = modules.convert_input(v1, v2)
 
             # loading screen
             percent = 100. * float(i)/total_samples
-            # os.system("clear")
             print("Running --- %.3f%%" % percent)
 
         except KeyboardInterrupt:
@@ -73,21 +71,25 @@ def sampler():
 
     if (not broke_out):
         # saving to file
-        text = settings.default_path + "data_%s.txt" % (
+        filepath = settings.default_path + "data_%s.txt" % (
             str(datetime.datetime.now())[:-7]
         ).replace(" ", "_").replace(":", "-")
 
-        np.savetxt(text, X, fmt=settings.format)
-        print ("file saved to %s " % text)
+        np.savetxt(filepath, X, fmt=settings.format)
+        print ("file saved to %s " % filepath)
+
+    else:
+        filepath = None
 
     # closing port
     p.flush()
     p.close
 
-    return text
+    return filepath
 
 
 if (__name__ == "__main__"):
 
     filepath = sampler()
-    plot(filepath, *argv)
+    if filepath is not None:
+        plot(filepath, *argv)
