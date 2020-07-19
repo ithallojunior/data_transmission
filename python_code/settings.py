@@ -12,9 +12,9 @@ timeout = 5.  # seconds, in order to prevent  the code from holding
 # frequency settings
 sampling_frequency = 2000.  # Hz
 time_window = 500e-3  # second(s),fixed to avoid performance issues on display
-time_window_to_show = 50e-3
+time_window_to_show = 1000e-3
 frequency_window = 2048  # samples
-total_time = 5.  # *60. # seconds, to be used to get the total number of samples
+total_time = 4.  # *60. # seconds, to be used to get the total number of samples
 max_expected_frequency = 500.  # Hz
 max_expected_frequency_to_show = 2. * max_expected_frequency  # Hz
 
