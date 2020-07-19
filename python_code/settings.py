@@ -30,6 +30,7 @@ amplitude = 1.  # volt(s), set in the signal generator
 
 # data saving settings
 format = "%.4f"  # I think 4 values after the point is enough
+default_path = 'acquisitions/'  # leave it empty to be on the same folder
 
 # transmitter settings
 number_of_channels = 1  # number of channels to be displayed/sampled

@@ -73,7 +73,7 @@ def sampler():
 
     if (not broke_out):
         # saving to file
-        text = "data_%s.txt" % (
+        text = settings.default_path + "data_%s.txt" % (
             str(datetime.datetime.now())[:-7]
         ).replace(" ", "_").replace(":", "-")
 
