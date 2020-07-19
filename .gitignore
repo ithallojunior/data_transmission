@@ -11,5 +11,6 @@ Thumbs.db
 .vscode/
 #pyenv
 .python-version
-# acquisition data
+# acquisition data ignored, except for the example data
+!python_code/acquisitions/example.*
 python_code/acquisitions
