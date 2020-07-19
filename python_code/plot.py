@@ -4,6 +4,7 @@ Usage: python plot.py --options
 Options:
 --save to save
 --nomean to remove mean
+--noshow  not to show the plot
 """
 
 from sys import argv
@@ -42,7 +43,9 @@ def plot(filepath, *args):
         plt.savefig(filepath.split('.')[0]+'.png')
         print('saved to file!')
 
-    plt.show()
+    if '--noshow' not in args:
+        plt.show()
+
     plt.close()
 
 
