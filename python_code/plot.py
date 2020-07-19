@@ -37,11 +37,12 @@ def plot(filepath, *args):
     plt.xlabel("Time (s)", size=20)
     plt.ylabel("Amplitude (V)", size=20)
     plt.grid()
-    plt.show()
 
     if '--save' in args:
         plt.savefig(filepath.split('.')[0]+'.png')
         print('saved to file!')
+
+    plt.show()
     plt.close()
 
 
