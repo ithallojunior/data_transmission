@@ -11,7 +11,7 @@ of the pipe name (5 Bytes). They  can just differ on the first byte.
 #include "nRF24L01.h"
 #include "RF24.h"
 
-//#define DOT_1 // if commented it activates the second device
+//#define DEVICE1 // if commented it activates the second device
 
 #define CSN_PIN 4//7//4
 #define CE_PIN 5//8//5 //reset pin
@@ -23,10 +23,10 @@ of the pipe name (5 Bytes). They  can just differ on the first byte.
 
 
 // setting the name of the transmitter
-#ifdef DOT_1
-  const unsigned char pipe[5] = "1_DOT";
+#ifdef DEVICE1
+  const unsigned char pipe[5] = "1SEMG";
 #else
-  const unsigned char pipe[5] = "2_DOT";
+  const unsigned char pipe[5] = "2SEMG";
 #endif
 
 uint16_t data[BUFFER_SIZE]; 

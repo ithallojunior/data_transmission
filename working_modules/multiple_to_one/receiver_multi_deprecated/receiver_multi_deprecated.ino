@@ -1,7 +1,7 @@
  /* Receiver
  * This code is for multiple channel trasmission and reception. In order for me
  * to differentiate the devices I marked them with white dots, so
- * they are called 1_DOT, 2_DOT, and so on. This is because of the 40 bit nature,
+ * they are called 1SEMG, 2SEMG, and so on. This is because of the 40 bit nature,
  * of the pipe name (5 Bytes). They  can just differ on the first byte.
  */
 #include <SPI.h>
@@ -45,14 +45,14 @@ RF24 radio(CE_PIN, CSN_PIN);
 
 //defining addresses
 #ifdef DOT_1 && !(DOT_2)
-  const unsigned char pipe[5] = "1_DOT";
+  const unsigned char pipe[5] = "1SEMG";
   uint16_t data[BUFFER_SIZE];
 #else 
   #ifdef DOT_2 && !(DOT_1)
-    const unsigned char pipe[5] = "2_DOT";
+    const unsigned char pipe[5] = "2SEMG";
     uint16_t data[BUFFER_SIZE];
    #else
-      const unsigned char pipe[2][5] = {"1_DOT", "2_DOT"};
+      const unsigned char pipe[2][5] = {"1SEMG", "2SEMG"};
       //two buffers, as I'm reading two pipes
       uint16_t data_dot_1[BUFFER_SIZE];
       uint16_t data_dot_2[BUFFER_SIZE];
