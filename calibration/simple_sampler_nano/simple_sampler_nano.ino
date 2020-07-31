@@ -16,6 +16,7 @@ unsigned int i = 0;
 
 void setup() {
 
+  analogReference(INTERNAL); //1v1
   Serial.begin(115200);
   //Serial.println("Starting TX");
 }
