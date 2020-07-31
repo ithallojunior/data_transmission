@@ -46,8 +46,8 @@ def spectrum_plotter():
             plt.clf()
             plt.xlabel("Frequency(Hz)")
             plt.xlim(0, settings.max_expected_frequency_to_show)
-           # plt.ylim(-1.05 * settings.offset , 1.05 *
-           # (settings.voltage_range - settings.offset))
+            if settings.normalize_spectrum:
+                plt.ylabel("%Max")
 
             i = 0
             while i < samples:
@@ -77,6 +77,9 @@ def spectrum_plotter():
                     abs(frequencies[Y.argmax()] * settings.sampling_frequency),
                     2
                 )
+
+                if settings.normalize_spectrum:
+                    Y = Y/Y.max()
 
                 plt.plot(
                     f, Y, c=settings.colors[i],

@@ -17,6 +17,7 @@ frequency_window = 2048  # samples
 total_time = 4.  # *60. # seconds, to be used to get the total number of samples
 max_expected_frequency = 500.  # Hz
 max_expected_frequency_to_show = 2. * max_expected_frequency  # Hz
+normalize_spectrum = True  # normalizes to the max
 
 
 # signal settings
