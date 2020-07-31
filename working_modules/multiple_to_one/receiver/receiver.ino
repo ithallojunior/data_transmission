@@ -11,7 +11,7 @@
 #define CSN_PIN 7
 #define CE_PIN 8
 #define CHANNEL 76//0x4c
-#define BUFFER_SIZE 4 //abs max per transmission 32Bytes, 16 for this
+#define BUFFER_SIZE 1 //abs max per transmission 32Bytes, 16 for this
 #define DEVICES 1
 const unsigned char pipes[2][5] = {"2SEMG", "1SEMG"};
 

@@ -17,7 +17,7 @@ of the pipe name (5 Bytes). They  can just differ on the first byte.
 #define CE_PIN 5//8 //reset pin
 #define CHANNEL 76//0x4c
 
-#define BUFFER_SIZE 4 //max 255, real buffer size
+#define BUFFER_SIZE 1 //max 255, real buffer size
 #define ANALOG_PIN 3 //PB3, pin 2
 #define DELTA 500 //useconds, 2000Hz
 
