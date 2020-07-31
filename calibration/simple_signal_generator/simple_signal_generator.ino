@@ -7,7 +7,8 @@ at 0.
 
 
 #define PIN 8
-#define HALF_CYCLE 2000 //useconds
+#define FREQUENCY 100 //Hz
+#define HALF_CYCLE 500000.*(1./FREQUENCY) //useconds
 
 unsigned long int t=0;
 bool initial_state=0;
