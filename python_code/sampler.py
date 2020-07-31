@@ -14,6 +14,7 @@ from sys import argv
 
 import serial
 import numpy as np
+from scipy.signal import lfilter
 
 import modules
 import settings
@@ -23,6 +24,10 @@ from plot import plot
 # the run of the code
 def sampler():
     """Samples the sEMG signal as declared on the settings file."""
+
+    # filter, getting the coefficients one time for all, as it is kinda slow
+    if (settings.use_filter):
+        b, a = modules.get_filter_constants()
 
     os.system("clear")
     raw_input("Press enter to start...")
@@ -74,6 +79,10 @@ def sampler():
         filepath = settings.default_path + "data_%s.txt" % (
             str(datetime.datetime.now())[:-7]
         ).replace(" ", "_").replace(":", "-")
+
+        # filtering signal
+        if (settings.use_filter):
+            X[:, 1] = lfilter(b, a, X[:, 1])
 
         np.savetxt(filepath, X, fmt=settings.format)
         print ("file saved to %s " % filepath)
