@@ -87,7 +87,6 @@ def plotter():
                     yn = plot_buffer[:, i] - plot_buffer[:, i].mean()
                 else:
                     yn = plot_buffer[:, i]
-
                 # checking if there is signal
                 signal_flag = ''
                 if not np.any(yn):
@@ -105,9 +104,10 @@ def plotter():
                 plt.xticks(grid_spacing)
                 plt.grid(color='k', linestyle='-', linewidth=.1)
                 plt.legend(loc="upper right")
-                plt.title("Signal(s) || Fs: %.3f || Filter %s" % (
+                plt.title("Signal(s) || Fs: %.3f || Filter %s || Range: %smV" % (
                           settings.sampling_frequency,
-                          'ON' if settings.use_filter else 'OFF')
+                          'ON' if settings.use_filter else 'OFF',
+                          round(yn.max() - yn.min(), 3)*1000.)
                           )
 
                 plt.pause(1.0/60.0)
