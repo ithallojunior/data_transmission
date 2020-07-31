@@ -13,8 +13,8 @@ of the pipe name (5 Bytes). They  can just differ on the first byte.
 
 //#define DEVICE1 // if commented it activates the second device
 
-#define CSN_PIN 4//7//4
-#define CE_PIN 5//8//5 //reset pin
+#define CSN_PIN 4//7
+#define CE_PIN 5//8 //reset pin
 #define CHANNEL 76//0x4c
 
 #define BUFFER_SIZE 4 //max 255, real buffer size
