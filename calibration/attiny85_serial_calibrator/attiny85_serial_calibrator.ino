@@ -5,6 +5,7 @@ It writes the callibration factor to the eeprom starting
 at 0.
 Remember that to keep the EEPROM data after reprogramming fuses must 
 be set.
+Use the bare minimum sketch on other arduino to use read the software serial
 The fuses are: 
 -U lfuse:w:0xe2:m -U hfuse:w:0xf7:m -U efuse:w:0xff:m
 */
