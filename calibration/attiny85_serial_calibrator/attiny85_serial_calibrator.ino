@@ -32,10 +32,10 @@ void setup() {
 
   mySerial.begin(9600);
   delay(1000);
-
+  // press b to begin
   mySerial.println("Started");
   mySerial.println("disable line endings");
-  mySerial.println("(s)tart");
+  mySerial.println("d to start");
   mySerial.println("(i)ncrease OSCCAL");
   mySerial.println("(d)ecrease OSCCAL");
   mySerial.println("(R)ead/(W)rite OSCCAL from/to EEPROM");
