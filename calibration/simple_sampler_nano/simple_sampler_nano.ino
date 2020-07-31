@@ -5,8 +5,8 @@ a buffer to make it easier.
 
 #define BUFFER_SIZE 4
 #define ANALOG_PIN 3 
-#define DELTA 250//useconds, 4000Hz
-
+#define SAMPLING_FREQUENCY 4000 //HZ
+#define DELTA 1000000/SAMPLING_FREQUENCY  //useconds
 
 uint16_t buffer[BUFFER_SIZE];
 unsigned long int now=0, t=0;
