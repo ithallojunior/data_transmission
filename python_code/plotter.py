@@ -29,7 +29,7 @@ def plotter():
     time.sleep(0.5)
 
     plt.ion()
-    plt.figure(figsize=(14, 8))
+    plt.figure(figsize=(18, 9))
 
     grid_spacing = np.arange(
         0,

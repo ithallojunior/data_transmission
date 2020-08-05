@@ -26,11 +26,11 @@ def plot(filepath, *args):
     if '--nomean' in args:
         y = y - y.mean()
 
-    plt.figure(figsize=(14, 8))
-    # plt.ylim([-0.6, 0.6])  # to get it just like the previous
-    plt.ylim([y.min(), y.max()])
-    #plt.xlim([0., 4.])
-    plt.plot(t, y, c="b", linewidth=2)
+    plt.figure(figsize=(18, 9))
+    plt.ylim([-0.6, 0.6])  # to get it just like the previous
+    #plt.ylim([y.min(), y.max()])
+    plt.xlim([0., 4.])
+    plt.plot(t, y,c="b", linewidth=1)
     #plt.rc('font', size=24)
     #plt.rc('axes', titlesize=24)
 
