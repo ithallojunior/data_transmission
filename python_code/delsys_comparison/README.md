@@ -113,9 +113,6 @@ plt.show()
 
 # SNR (signal to noise ratio)
 
-$$
-SNR = 20log_{10}\left(\frac{S}{N}\right)
-$$
 
 
 ```python
@@ -187,10 +184,6 @@ print("Dev5 SNR: %.2f dB" % snr(dev5_signal_level, dev5_noise_level))
 
 
 ## RMS (root mean square)
-
-$$
-x_{RMS} =  \sqrt{\frac{1}{N} \sum_{i=1}^{N}x_{i}^{2}   }
-$$
 
 
 ```python
