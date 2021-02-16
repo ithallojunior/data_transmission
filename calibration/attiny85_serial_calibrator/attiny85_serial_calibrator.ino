@@ -1,14 +1,22 @@
 /*
-A serial to the attiny85
-that will be used to calibrate its internal oscillator.
-It writes the callibration factor to the eeprom starting
-at 0.
-Remember that to keep the EEPROM data after reprogramming fuses must 
-be set.
-Use the bare minimum sketch on other arduino to use read the software serial
-The fuses are: 
+A calibrator code that uses a serial connection
+between the ATtiny85 and other Arduino 
+to adjust the internal oscillator of the tiny.
+
+Use the bare minimum sketch on other Arduino to read the 
+ATtiny85's software serial and to set the values as 
+the codes show. 
+
+Remember that to keep the EEPROM data after reprogramming
+the fuses must be set before using this code.
+
+The fuses to be set on the ATtiny85 are: 
 -U lfuse:w:0xe2:m -U hfuse:w:0xf7:m -U efuse:w:0xff:m
+
+It writes the callibration factor to the EEPROM, starting
+at 0.
 */
+
 #include <EEPROM.h>
 #include<SoftwareSerial.h>
 
