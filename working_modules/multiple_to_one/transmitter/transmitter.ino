@@ -3,7 +3,8 @@ SENDER which uses the pre-calibrated OSCCAL from EEPROM.
 
 This code is for multiple channel transmission and reception. In order
 to differentiate the devices they are marked with white dots, so
-they are called 1_DOT, 2_DOT, and so on. This is because of the 40 bit nature
+they are called 2SEMG, 1SEMG, (this naming follows historical reasons) 
+and so on. This is because of the 40 bit nature
 of the pipe name (5 Bytes). They  can just differ on the first byte.
 */
 
@@ -11,22 +12,24 @@ of the pipe name (5 Bytes). They  can just differ on the first byte.
 #include "nRF24L01.h"
 #include "RF24.h"
 
-//#define DEVICE1 // if commented it activates the second device
+#define DEVICE1 // if commented it activates the second device
 
-#define CSN_PIN 4//7
-#define CE_PIN 5//8 //reset pin
+#define CSN_PIN 4
+#define CE_PIN 5 //reset pin
+#define ANALOG_PIN 3 //PB3, pin 2
 #define CHANNEL 76//0x4c
 
 #define BUFFER_SIZE 1 //max 255, real buffer size
-#define ANALOG_PIN 3 //PB3, pin 2
-#define DELTA 500 //useconds, 2000Hz
+
+#define SAMPLING_FREQUENCY 2000 //HZ
+#define DELTA 1000000/SAMPLING_FREQUENCY
 
 
 // setting the name of the transmitter
 #ifdef DEVICE1
-  const unsigned char pipe[5] = "1SEMG";
+  const unsigned char pipe[6] = "2SEMG";
 #else
-  const unsigned char pipe[5] = "2SEMG";
+  const unsigned char pipe[6] = "1SEMG";
 #endif
 
 uint16_t data[BUFFER_SIZE]; 
