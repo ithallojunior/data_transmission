@@ -2,6 +2,7 @@
 Cleans the files that come from the acquisitions with a NI device.
 Dots must not be in the filepath, except for the extension.
 Spaces are used as delimiters.
+Author: Ithallo Junior Alves Guimaraes
 """
 
 from sys import argv

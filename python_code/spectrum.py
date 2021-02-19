@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Spectrum plotter, it must be set with the settings.py file
-Author: Ithallo Junior Alves Guimarães
-March 2019
+Author: Ithallo Junior Alves Guimaraes
 """
 
 import matplotlib.pyplot as plt
@@ -79,7 +78,9 @@ def spectrum_plotter():
                 )
 
                 if settings.normalize_spectrum:
-                    Y = Y/Y.max()
+                    y_max = Y.max()
+                    y_max = 1. if y_max==0 else y_max
+                    Y = Y/y_max
 
                 plt.plot(
                     f, Y, c=settings.colors[i],

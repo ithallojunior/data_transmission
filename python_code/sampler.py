@@ -5,6 +5,8 @@ After sampling, it calls the plotter, if the argument
 '--plot' was passed. Other possible arguments may be passed,
 as detailed in the 'plot.py file'.
 
+Author: Ithallo Junior Alves Guimaraes
+
 """
 
 import os

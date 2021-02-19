@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Configuration file for the plotters
-Author: Ithallo Junior Alves Guimarães
-March 2019
+Settings file for the plotters
+Author: Ithallo Junior Alves Guimaraes
 """
 # serial settings
 device = "/dev/cu.wchusbserial1410"  # change accordingly
@@ -26,8 +25,6 @@ offset = 0.  # voltage offset to correct signal
 remove_mean = False  # removes mean for the window
 always_use_remove_mean_for_spectrum = True  # forces removing mean for spectrum
 
-# case using a known signal
-amplitude = 1.  # volt(s), set in the signal generator
 
 # data saving settings
 format = "%.4f"  # I think 4 values after the point is enough

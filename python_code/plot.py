@@ -1,10 +1,13 @@
 """
 Plots and saves a PNG file for the file passed as argument.
+
 Usage: python plot.py --options
 Options:
 --save to save
 --nomean to remove mean
 --noshow  not to show the plot
+
+Author: Ithallo Junior Alves Guimaraes
 """
 
 from sys import argv

@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Modules file for the plotters, which will be used for multiple codes.
-Author: Ithallo Junior Alves Guimarães
-March 2019
+Author: Ithallo Junior Alves Guimaraes
 """
 
 import serial
@@ -28,7 +27,7 @@ def convert_input(a, b, raw=False):
 
 def serial_port():
     """Encapsulates the opening of the serial port."""
-
+    
     try:
         p = serial.Serial(
             port=settings.device, baudrate=settings.baud_rate,

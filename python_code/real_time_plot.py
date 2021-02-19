@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Plotter, it must be set with the settings.py file
-Author: Ithallo Junior Alves Guimarães
-March 2019
+Real time plot
+It must be set with the settings.py file
+Author: Ithallo Junior Alves Guimaraes
 """
 
 import matplotlib.pyplot as plt
