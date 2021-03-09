@@ -9,12 +9,6 @@ The  connection instructions (and hacks used) are available on the
 for the validation of my frequency sampler (and transmitter), 
 the visualization of  the signal (both in frequency and time).
 
-## To do
-
-  + Better organize my python and Arduino code;
-  + Test bidirectional communication (to add settings to the 
-    transmitters);
-  + Adapt code automatically use  N transmitters;
-  + Etc.
+This code was partialy migrated to https://github.com/ithallojunior/sEMG-device.
 
 
